@@ -44,6 +44,31 @@ export const EnterPassword = () => {
   const [loading, setLoading] =
     useState(false);
 
+  // =========================================
+  // PASSWORD LOCKOUT
+  // =========================================
+
+  const [failedAttempts, setFailedAttempts] =
+    useState(() => {
+      const stored =
+        sessionStorage.getItem(
+          `failedPasswordAttempts:${email}`
+        );
+
+      return stored
+        ? Number(stored)
+        : 0;
+    });
+
+  const [isLocked, setIsLocked] =
+    useState(() => {
+      return (
+        sessionStorage.getItem(
+          `passwordLocked:${email}`
+        ) === 'true'
+      );
+    });
+
   /*
    * If the user directly opens /login
    * without an email, send them back
@@ -59,6 +84,12 @@ export const EnterPassword = () => {
 
   const handleSignIn = async () => {
     setError('');
+
+    // Check whether this account is already locked
+    if (isLocked) {
+      navigate('/locked');
+      return;
+    }
 
     if (!email) {
       setError(
@@ -83,12 +114,63 @@ export const EnterPassword = () => {
           password
         );
 
+      // =========================================
+      // INCORRECT PASSWORD
+      // =========================================
+
       if (!isValid) {
-        setError(
-          'Incorrect password. Please try again.'
+        const newFailedAttempts =
+          failedAttempts + 1;
+
+        setFailedAttempts(
+          newFailedAttempts
         );
+
+        sessionStorage.setItem(
+          `failedPasswordAttempts:${email}`,
+          newFailedAttempts.toString()
+        );
+
+        // Lock after 5 incorrect attempts
+        if (newFailedAttempts >= 5) {
+          setIsLocked(true);
+
+          sessionStorage.setItem(
+            `passwordLocked:${email}`,
+            'true'
+          );
+
+          navigate('/locked');
+          return;
+        }
+
+        const remaining =
+          5 - newFailedAttempts;
+
+        setError(
+          `Incorrect password. ${remaining} attempt${
+            remaining === 1 ? '' : 's'
+          } remaining.`
+        );
+
         return;
       }
+
+      // =========================================
+      // SUCCESSFUL LOGIN
+      // =========================================
+
+      // Clear failed attempts after successful login
+      sessionStorage.removeItem(
+        `failedPasswordAttempts:${email}`
+      );
+
+      sessionStorage.removeItem(
+        `passwordLocked:${email}`
+      );
+
+      setFailedAttempts(0);
+      setIsLocked(false);
 
       sessionStorage.setItem(
         'authEmail',
@@ -103,6 +185,7 @@ export const EnterPassword = () => {
       }
 
       navigate('/2fa');
+
     } catch (error) {
       setError(
         'Unable to connect to the server. Please try again.'
@@ -225,14 +308,15 @@ export const EnterPassword = () => {
             }}
             onKeyDown={(event) => {
               if (
-                event.key === 'Enter'
+                event.key === 'Enter' &&
+                !isLocked
               ) {
                 handleSignIn();
               }
             }}
             placeholder="Enter your password"
             autoComplete="current-password"
-            disabled={loading}
+            disabled={loading || isLocked}
             className="w-full h-14 px-4 pr-12 border border-slate-200 rounded-lg bg-slate-50 focus:border-indigo-600 focus:ring-2 focus:ring-indigo-600/20 outline-none transition-all"
           />
 
@@ -243,6 +327,7 @@ export const EnterPassword = () => {
                 !showPassword
               )
             }
+            disabled={isLocked}
             className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500"
           >
             {showPassword ? (
@@ -286,11 +371,13 @@ export const EnterPassword = () => {
 
       <PrimaryButton
         onClick={handleSignIn}
-        disabled={loading}
+        disabled={loading || isLocked}
       >
-        {loading
-          ? 'Signing in...'
-          : 'Sign in'}
+        {isLocked
+          ? 'Account locked'
+          : loading
+            ? 'Signing in...'
+            : 'Sign in'}
       </PrimaryButton>
 
       <div className="text-center text-sm text-slate-500 border-t border-slate-100 pt-6">
