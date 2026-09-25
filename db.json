@@ -2,116 +2,108 @@
   "users": [
     {
       "id": "1",
+      "name": "Acme User",
       "email": "you@acmecorp.com",
       "password": "password123",
-      "company": "acmecorp",
-      "name": "Acme User",
       "otp": "123456"
-    },
-    {
-      "id": "1",
-      "name": "Jaghanav",
-      "email": "jaghanav@acmecorp.com",
-      "password": "jaghanav123",
-      "company": "acmecorp",
-      "otp": "777777"
     },
     {
       "id": "2",
-      "name": "Shaik",
-      "email": "shaik@acmecorp.com",
-      "password": "shaik123",
-      "company": "acmecorp",
-      "otp": "696969"
+      "name": "Jaghanav",
+      "email": "jaghanav@acmecorp.com",
+      "password": "password123",
+      "otp": "234567"
     },
     {
       "id": "3",
-      "name": "Dhamodharan",
-      "email": "dhamodharan@acmecorp.com",
-      "password": "dhamodharan123",
-      "company": "acmecorp",
-      "otp": "101010"
+      "name": "Shaik",
+      "email": "shaik@acmecorp.com",
+      "password": "password123",
+      "otp": "345678"
     },
     {
       "id": "4",
-      "name": "Gokul",
-      "email": "gokul@acmecorp.com",
-      "password": "gokul123",
-      "company": "acmecorp",
-      "otp": "454545"
+      "name": "Dhamodharan",
+      "email": "dhamodharan@acmecorp.com",
+      "password": "password123",
+      "otp": "456789"
     },
     {
       "id": "5",
-      "name": "Arun",
-      "email": "arun@acmecorp.com",
-      "password": "arun123",
-      "company": "acmecorp",
-      "otp": "232323"
+      "name": "Gokul",
+      "email": "gokul@acmecorp.com",
+      "password": "password123",
+      "otp": "567890"
     },
     {
       "id": "6",
+      "name": "Arun",
+      "email": "arun@acmecorp.com",
+      "password": "password123",
+      "otp": "678901"
+    },
+    {
+      "id": "7",
       "name": "Karthik",
       "email": "karthik@acmecorp.com",
-      "password": "karthik123",
-      "company": "acmecorp",
-      "otp": "909090"
+      "password": "password123",
+      "otp": "789012"
     },
     {
-      "id": "02oREgcJZKw",
+      "id": "8",
       "name": "Jaghanav",
       "email": "jaghanav77@gmail.com",
-      "password": "Jaghanav11*",
-      "otp": "123456"
+      "password": "password123",
+      "otp": "890123"
     },
     {
-      "id": "Iqsclf0Iohk",
+      "id": "9",
       "name": "Jaghanav",
       "email": "jaghanav10@gmail.com",
-      "password": "Jaghanav10*",
-      "otp": "123456"
+      "password": "password123",
+      "otp": "901234"
     },
     {
+      "id": "10",
       "name": "Jaghanav7",
       "email": "jaghanav11@gmail.com",
-      "password": "Jaghanav10*",
-      "otp": "176729",
-      "id": "gb4fOzfRcDs"
+      "password": "password123",
+      "otp": "012345"
     },
     {
+      "id": "11",
       "name": "Jaghanav Priyan M S K",
       "email": "jaghanav13@gmail.com",
-      "password": "Jaghanav10*",
-      "otp": "971584",
-      "id": "MQofyBP76Gg"
+      "password": "password123",
+      "otp": "112233"
     },
     {
+      "id": "12",
       "name": "Jaghanav Priyan M S K",
       "email": "jaghanav14@gmail.com",
-      "password": "Jaghanav10*",
-      "otp": "707094",
-      "id": "OGWIs1ZvHVI"
+      "password": "password123",
+      "otp": "223344"
     },
     {
+      "id": "13",
       "name": "Jaghanav Priyan M S K",
       "email": "jaghanav88@gmail.com",
-      "password": "Jaghanav10*",
-      "otp": "228348",
-      "id": "Evd1_8DmeN4"
+      "password": "password123",
+      "otp": "334455"
     },
     {
+      "id": "14",
       "name": "Jaghanav Priyan M S K",
       "email": "jaghanav89@gmail.com",
-      "password": "Jaghanav10*",
-      "otp": "199697",
-      "id": "mSoJtTnTnTo"
+      "password": "password123",
+      "otp": "445566"
     },
     {
+      "id": "15",
       "name": "Jaghanav Priyan M S K",
       "email": "jaghanav37@gmail.com",
-      "password": "Jaghanav10*",
-      "otp": "267334",
-      "id": "oeZQjsEGeKU"
+      "password": "password123",
+      "otp": "556677"
     }
-  ],
-  "$schema": "./node_modules/json-server/schema.json"
+  ]
 }
